@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 DB_NAME = os.environ.get("DATABASE_URL")
+Secret_key = os.environ.get("SECRET_KEY")
 login_manager = LoginManager()
 
 
@@ -15,7 +16,7 @@ def create_app():
     from .models import User, Note
 
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'hjshjhdjahkjshkjdhjs'
+    app.config['SECRET_KEY'] = Secret_key
     app.config['SQLALCHEMY_DATABASE_URI'] = DB_NAME
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
