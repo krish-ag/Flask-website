@@ -1,0 +1,42 @@
+{% extends "base2.html" %}
+{% block Condition %}
+  {% if decrip == 0 %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      Email does not exist.
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+  {% endif %}
+{% endblock %}
+
+{% block title %}Update{% endblock %}
+
+{% block body %}
+  q
+
+  <div class="container my-3">
+    <h2>Update Todo</h2>
+    <form action="/update/{{ todo.sno }}" method="post">
+      <div class="mb-3">
+        <label for="title" class="form-label">Todo Title</label>
+        <input type="text" class="form-control" name="title" id="title" value="{{ todo.title }}">
+
+        {#            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>#}
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Todo Description</label>
+        <input type="text" class="form-control" name="desc" id="description" value="{{ todo.desc }}">
+      </div>
+      {#          <div class="mb-3 form-check">#}
+      {#            <input type="checkbox" class="form-check-input" id="exampleCheck1">#}
+      {#            <label class="form-check-label" for="exampleCheck1">Check me out</label>#}
+      {#          </div>#}
+      <button type="submit" class="btn btn-dark">Update</button>
+    </form>
+  </div>
+
+
+
+{% endblock %}

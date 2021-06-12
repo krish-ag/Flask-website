@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block Condition %}
+  {% if decrip == 0 %}
+    <div class="alert alert-dark " role="alert">
+      Title and Description Should Not Be Blank
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+  <div class="container my-3">
+    <h2>Add a ToDo</h2>
+    <form action="/" method="post">
+      <div class="mb-3">
+        <label for="title" class="form-label">Todo Title</label>
+        <input type="text" class="form-control" required name="title" id="title">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Todo Description</label>
+        <input type="text" class="form-control" required name="desc" id="description">
+      </div>
+
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+  </div>
+
+  <div class="container my-3">
+    <h2>Your Todos</h2>
+    {% if allTodo|length == 0 %}
+      <div class="alert alert-dark" role="alert">
+        No Records, Add a New One.
+      </div>
+    {% else %}
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">SNo</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Time</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for idx, todo in enumerate(allTodo) %}
+          <tr>
+            <th scope="row">{{ idx++1 }}</th>
+            <td>{{ todo.Title }}</td>
+            <td>{{ todo.Description }}</td>
+            <td>{{ todo.date }}</td>
+            <td>
+              <a href="/update/{{ todo.id }}" type="button" class="btn btn-outline-dark btn-sm mx-1">Update</a>
+              <a href="/delete/{{ todo.id }}" type="button" class="btn btn-outline-dark btn-sm mx-1">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+
+
+{% endblock %}
